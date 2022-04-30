@@ -23,7 +23,7 @@ namespace Calculator
                 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "0" && textBox1.Text != null)
+            if (textBox1.Text == "0")
             {
                 textBox1.Text =  "2";
             }
@@ -36,7 +36,7 @@ namespace Calculator
       
         private void button3_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text != "0" && textBox1.Text != null)
+            if (textBox1.Text != "0")
             {
                 textBox1.Text = textBox1.Text + "3";
             }
@@ -46,7 +46,7 @@ namespace Calculator
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "0" && textBox1.Text != null)
+            if (textBox1.Text == "0")
                 textBox1.Text = "4";
             else
             {
@@ -56,7 +56,7 @@ namespace Calculator
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "0" && textBox1.Text != null)
+            if (textBox1.Text == "0")
                 textBox1.Text = "5";
             else
             {
@@ -66,7 +66,7 @@ namespace Calculator
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "0" && textBox1.Text != null)
+            if (textBox1.Text == "0")
                 textBox1.Text = "6";
             else
             {
@@ -76,7 +76,7 @@ namespace Calculator
 
         private void button7_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "0" && textBox1.Text != null)
+            if (textBox1.Text == "0")
                 textBox1.Text = "7";
             else
             {
@@ -86,7 +86,7 @@ namespace Calculator
 
         private void button8_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "0" && textBox1.Text != null)
+            if (textBox1.Text == "0")
                 textBox1.Text = "8";
             else
             {
@@ -96,7 +96,7 @@ namespace Calculator
 
         private void button9_Click(object sender, EventArgs e)
         {
-            if(textBox1.Text == "0" && textBox1.Text != null)
+            if(textBox1.Text == "0")
                 textBox1.Text = "9";
             else
             {
@@ -106,7 +106,7 @@ namespace Calculator
 
         private void button10_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "0" && textBox1.Text != null)
+            if (textBox1.Text == "0")
                 textBox1.Text = "0";
             else
             {
