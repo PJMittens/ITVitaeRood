@@ -1,0 +1,61 @@
+Console.WriteLine("Voer uw bestandslocatie in:");
+string myFile = Console.ReadLine();
+
+try
+{
+    using (StreamReader sr = new StreamReader(myFile))
+    {
+        string myText = sr.ReadToEnd();
+        InputTeken(myText);
+    }
+    
+}
+catch (Exception ex)
+{
+    Console.WriteLine("Het bestand kon niet worden gelezen.");
+    Console.WriteLine(ex.ToString());
+    Console.ReadLine();
+}
+
+
+
+static void InputTeken(string Text)
+{
+    Console.Clear();
+    Console.WriteLine("Welk teken zoekt u?");
+    string myTeken = Console.ReadLine();
+
+    if (myTeken.Length != 1)
+    {
+        Console.WriteLine("Een teken is 1 character lang.");
+        Console.ReadLine();
+        InputTeken(Text);
+    }
+
+    else
+    {
+        TellenTeken(myTeken, Text);
+    }
+}
+
+
+
+static void TellenTeken(string Teken, string file)
+{
+    char charTeken = char.Parse(Teken);
+    charTeken = char.ToLowerInvariant(charTeken);
+    int nTeken = 0;
+    char[] charArray = file.ToCharArray();
+    ;
+    foreach (char charFile in charArray)
+    {
+
+        if (char.ToLowerInvariant(charFile) == charTeken)
+        {
+            nTeken++;
+        }
+    }
+
+    Console.WriteLine("Het teken {0} komt {1} keer voor.", Teken, nTeken);
+    Console.ReadLine();
+}
