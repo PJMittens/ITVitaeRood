@@ -1,0 +1,51 @@
+Console.WriteLine("Welkom bij TaxiCheck.nl");
+Console.ReadLine();
+Kosten();
+       
+
+static void Kosten()
+{
+    Console.Clear();
+    Console.WriteLine("Datum van de rit in d/m/y H:m?");
+    DateTime ritDatum = DateTime.Parse(Console.ReadLine());
+    double prijs = 0;
+    bool weekend = false;
+    if (ritDatum.DayOfWeek == DayOfWeek.Saturday || ritDatum.DayOfWeek == DayOfWeek.Sunday) 
+    { weekend = true; }
+    if ((ritDatum.DayOfWeek == DayOfWeek.Monday) && ritDatum.Hour < 7) 
+    { weekend = true; }
+    if ((ritDatum.DayOfWeek == DayOfWeek.Friday) && ritDatum.Hour >= 22) 
+    { weekend = true; }
+    else 
+    { weekend = false; }
+    if (weekend == true)
+        {
+        prijs = 1.15 * ReisKosten(ritDatum);
+        }
+    else
+    {
+        prijs = ReisKosten(ritDatum);
+    }
+
+    Console.WriteLine("De rit kost {0:C}", prijs);
+    Console.ReadLine();
+}
+
+static double ReisKosten(DateTime ritDatum) 
+{
+    Console.WriteLine("Eind tijd van de rit in d/m/y H:m?");
+    DateTime ritEind = DateTime.Parse(Console.ReadLine());
+    Console.WriteLine("Aantal kilometers gereist tijden de rit?");
+    double ritAfstand = double.Parse(Console.ReadLine());
+    double ritKosten = 0;
+    TimeSpan ritTijd = ritEind.Subtract(ritDatum);
+    if (ritDatum.Hour >= 8 && ritDatum.Hour < 18)
+    {
+        ritKosten = 1 * ritAfstand + 0.25 * ritTijd.TotalMinutes;
+    }
+    else
+    {
+        ritKosten = 1 * ritAfstand + 0.45 * ritTijd.TotalMinutes;
+    }
+    return ritKosten;
+}
