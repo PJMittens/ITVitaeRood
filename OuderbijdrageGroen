@@ -1,0 +1,77 @@
+Start();
+
+static void Start()
+{
+    double Basis = 50;
+    bool eenOuder = false;
+    Console.Clear();
+    Console.WriteLine("Heeft u een partner?");
+    string myPartner = Console.ReadLine();
+    if (myPartner.ToUpperInvariant() == "JA")
+    {
+        eenOuder = false;
+    }
+    if (myPartner.ToUpperInvariant() == "NEE")
+    {
+        eenOuder = true;
+    }
+    else 
+    {
+        Start(); 
+    }
+    Console.WriteLine("Hoeveel kinderen heeft u?");
+    int myKids = int.Parse(Console.ReadLine());
+    double kidsJong = 0;
+    double kidsOud = 0;
+    for (int i = 0; i < myKids; i++)
+    {
+        Console.WriteLine("Geboortedatum van kind {0} in dd/mm/yyyy?", i + 1);
+        DateTime myDate = DateTime.Parse(Console.ReadLine());
+        TimeSpan myAge = DateTime.Now - myDate;
+        if (myAge.TotalDays < 3562.4)
+        {
+            kidsJong = Jong(kidsJong);
+        }
+        else
+        {
+            kidsOud = Oud(kidsOud);
+        }
+    }
+    double kidsTotaal = Basis+kidsJong+kidsOud;
+    Bijdrage(eenOuder, kidsTotaal);
+
+}
+
+static double Jong(double jong)
+{
+    jong += 25;
+    if (jong >= 75)
+    {
+        jong = 75;
+    }
+    return jong;
+}
+
+static double Oud(double oud)
+{
+    oud += 37;
+    if (oud >= 74)
+    {
+        oud = 74;
+    }
+    return oud;
+}
+
+static void Bijdrage(bool eenOuder, double kids)
+{
+    if (kids >= 150)
+    {
+        kids = 150;
+    }
+    if (eenOuder == true)
+    {
+        kids = 3 * kids/4;
+    }
+    Console.WriteLine("Uw te betalen Ouderbijdrage is {0:C}", kids);
+    Console.ReadLine();
+}
