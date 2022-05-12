@@ -1,0 +1,57 @@
+/*
+Ik weet dat er in de opdracht "benzinekosten in de berekening verwerken" staat, maar ik zie verder geen gegevens over benzinekosten. Het is niet moeilijk om toe te voegen, 
+maar er zijn meerdere manieren om dit aan te pakken en het slimst zou zijn dat de benzine-kosten al in de kosten per kilometer zijn verwerkt. 
+Anders kan je met het aanvragen van getankte liters of de volheid van de tank (op dezelfde manier als start/eind datum, maar dan met een double.parse) 
+en een prijs per liter de benzine kosten verwerken. Ik vond de opdracht daarin betreft wat onduidelijk, dus heb ik dat stuk opengelaten en deze toevoeging toegevoegd.
+Mocht het nodig zijn dat het alsnog verwerkt moet worden zou ik graag meer willen weten over hoe het bedrijf benzine kosten regelt.
+*/
+
+bool antwoord = false;
+double autoKost = 0;
+Console.WriteLine("Start datum verhuur?");
+DateTime huurStart = DateTime.Parse(Console.ReadLine());
+Console.WriteLine("Eind datum verhuur?");
+DateTime huurEid = DateTime.Parse(Console.ReadLine());
+TimeSpan timeSpan = huurEid - huurStart;
+while (antwoord != true)
+{
+    Console.Clear();
+    Console.WriteLine("Auto of busje gehuurd?");
+    string autoBus = Console.ReadLine();
+    if (autoBus.ToLowerInvariant() == "auto")
+    {
+        for (int i = 0; i < timeSpan.TotalDays; i++)
+        {
+           autoKost = Auto(autoKost, i);
+        }
+        antwoord = true;
+    }
+    if (autoBus.ToLowerInvariant() == "busje" || autoBus.ToLowerInvariant() == "bus")
+    {
+        autoKost = Busje(timeSpan,autoKost);
+        antwoord = true;
+    }
+    else
+    {
+        antwoord = false;
+    }
+}
+static double Auto(double Kost, int i)
+{
+    Console.WriteLine("Hoeveel km heeft u afgelegd op dag {0}?", i + 1);
+    double dagKm = double.Parse(Console.ReadLine()) - 100;
+    if (dagKm < 0)
+    {
+        dagKm = 0;
+    }
+    Kost = 50 + Kost + 0.2 * dagKm;
+    return Kost;
+}
+
+static double Busje(TimeSpan time, double bus)
+{
+    Console.WriteLine("Aantal gereden km?");
+    double busKm = double.Parse(Console.ReadLine());
+    bus = 0.3 * busKm + time.TotalDays * 95;
+    return bus;
+}
