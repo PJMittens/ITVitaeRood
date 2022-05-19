@@ -1,0 +1,55 @@
+List<string> ages = new List<string>();
+Console.WriteLine("Hoeveel personen wilt u inschrijven?");
+int abPersoon = int.Parse(Console.ReadLine());
+
+for (int i = 0; i < abPersoon; i++)
+{
+    //Console.Clear();
+    Console.WriteLine("Geboortedatum persoon {0} in dd/mm/yyyy?", i + 1);
+    DateTime abBday = DateTime.Parse(Console.ReadLine());
+    TimeSpan abAge = DateTime.Parse("1/1/" + DateTime.Now.Year.ToString()) - abBday;
+    double a = abAge.Days;
+    double b = 356.24;
+    string myCat = "Volwassen";
+    int age = Convert.ToInt32(Math.Floor(a / b));
+     
+    if(age > 17 && age < 65)
+    {
+        myCat = "Volwassen";
+    }
+    else
+    {
+        if (age > 64)
+        {
+            myCat = "Senior";
+        }
+            
+        else
+        {
+            myCat = "Kind";
+        }
+    }
+    ages.Add(myCat);
+}
+
+decimal Adult = ages.Count(s => s == "Volwassen");
+decimal Kind = ages.Count(s => s == "Kind");
+decimal Old = ages.Count(s => s == "Senior");
+decimal Prijs = 0;
+decimal oldHalf = Old / 2;
+decimal oldCheck = Math.Floor(oldHalf)*13;
+decimal aduHalf = Adult / 2;
+decimal aduCheck = Math.Floor(aduHalf)*1;
+if (Kind > 0)
+{
+    Prijs = (Adult * 30) + (11 * Kind) + (Old * 26) + oldCheck;
+}
+else
+{
+   Prijs = Old * 26 + Adult * 30 + oldCheck + aduCheck;
+}
+//Console.WriteLine(Adult);
+//Console.WriteLine(Old);
+//Console.WriteLine(Kind);
+Console.WriteLine("Uw abonnement kost {0:C}",Prijs);
+Console.ReadLine();
